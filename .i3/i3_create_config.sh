@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 hostname=$(hostname)
-i3_config_file="$HOME/.i3/config_test"
+i3_config_file="$HOME/.i3/config"
 i3_config_dir="$HOME/.i3/config.d"
 
 if [[ -f $i3_config_file ]];
