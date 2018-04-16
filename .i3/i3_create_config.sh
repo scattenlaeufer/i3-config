@@ -18,6 +18,6 @@ echo "" >> $i3_config_file
 
 cat $i3_config_dir/base.conf >> $i3_config_file
 cat $i3_config_dir/keybindings.conf >> $i3_config_file
-cat $i3_config_dir/statusbar.conf >> $i3_config_file
+# cat $i3_config_dir/statusbar.conf >> $i3_config_file
 cat $i3_config_dir/$hostname.conf >> $i3_config_file
 cat $i3_config_dir/stuff.conf >> $i3_config_file
