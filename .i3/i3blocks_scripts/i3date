@@ -1,0 +1,7 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+	1) termite -e "khal interactive" ;;
+esac
+
+echo $(date '+KW%W %a %Y-%m-%d %H:%M')

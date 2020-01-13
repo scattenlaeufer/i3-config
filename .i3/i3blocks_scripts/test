@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+function test {
+	case $1 in
+		'test2') echo 'blubb' ;;
+		*) echo 'foo' ;;
+	esac
+
+	echo $1
+	echo $1
+}
+
+test 'test2'

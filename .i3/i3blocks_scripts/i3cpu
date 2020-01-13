@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+idle=$(mpstat -P ALL 1 1 | grep  'Average:\s*[$1]' | awk '{print $12}')
+echo $idle
+echo "$((100-idle))" | bc
