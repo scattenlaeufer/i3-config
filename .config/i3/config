@@ -15,6 +15,9 @@
 
 set $mod Mod4
 
+# define the default locker
+set $locker i3lock --color=000000 --ignore-empty-password --show-failed-attempts
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -29,7 +32,8 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec urxvt -ip -sh 50 #i3-sensible-terminal
-bindsym $mod+Return exec termite #i3-sensible-terminal
+#bindsym $mod+Return exec termite #i3-sensible-terminal
+bindsym $mod+Return exec alacritty #i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+x kill
@@ -135,7 +139,8 @@ bindsym XF86AudioStop exec mpc stop & pkill -RTMIN+11 i3blocks
 # lock, sleep and hibernate
 bindsym XF86Suspend exec systemctl hybrid-sleep
 bindsym XF86WebCam exec systemctl hibernate
-bindsym XF86ScreenSaver exec i3lock --color=000000 --ignore-empty-password --show-failed-attempts
+bindsym Pause exec $locker
+bindsym XF86Favorites exec $locker
 
 # reload the configuration file
 bindsym $mod+Shift+adiaeresis reload
@@ -176,16 +181,19 @@ bindsym XF86Launch1 exec "import root ~/bilder/screenshots/$(date +%F_%H%M%S_%N)
 bar {
 #	output LVDS1
 	position top
-	font pango:DejaVu Sans Mono, Icons 6
+	font pango:DejaVu Sans Mono, Icons 9
 	# status_command python /home/bjoern/.config/i3/bar_lvds1.py
 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
 }
 
 # start compton
-exec compton -b
+exec picom -b
 
 # Set a background image
-exec feh --bg-scale /home/bjoern/.config/i3/poor_pluto_1440x900.jpg
+exec feh --bg-scale /home/bjoern/.config/i3/green-galaxy.jpg
+
+# auto lock screen after 5 minutes
+exec xautolock -time 5 -locker "$locker"
 
 # Set boarder for windows
 new_window 1pixel
