@@ -1,0 +1,14 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+	1) pavucontrol & disown ;;
+	3) pamixer -t ;;
+	4) pamixer -i 5 ;;
+	5) pamixer -d 5 ;;
+esac
+
+[[ $(pamixer --get-mute) = "true" ]] && printf "mute\nmute\n#00FF00" && exit
+vol=$(pamixer --get-volume)
+echo $vol%
+echo $vol%
+echo \#FF0000

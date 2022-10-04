@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+format () {
+	case $(sed -n 2p $1 | sed 's/.*\[\([^]]*\)\].*/\1/g') in
+		'playing') echo -n '▶️ ' ;;
+		'paused') echo -n '▷ ' ;;
+		*) echo -n '■ - - ' & exit ;;
+	esac
+	mpc -f "%artist% - %album% - %title%" | sed -n 1p
+}
+
+case $BLOCK_BUTTON in
+	1) mpc -f "%artist% - %album% - %title%" toggle | format ;;
+	4) mpc -f "%artist% - %album% - %title%" next | format ;;
+	5) mpc -f "%artist% - %album% - %title%" prev | format ;;
+	*) mpc -f "%artist% - %album% - %title%" status | format ;;
+esac
